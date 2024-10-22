@@ -1,0 +1,151 @@
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="usta">
+
+    <link rel="stylesheet" href="/gl1310p.css">
+    <link rel="icon" href="/logo.png">
+    <title> Site İsmi </title>
+  </head>
+  <body>
+    <div id="bekle">
+      <img id="bekleme" src="/bekleme.gif">
+      <h2 id="yukleniyor"> Yükleniyor </h2>
+    </div>
+
+    <div id="komple">
+      <div id="panel">
+        <a href="/anasayfa"><img id="logo" src="/logo2.png"></a>
+        <div id="sayfalar" onclick="sayfalar()">
+          <h4 id="isaret">≡</h4>
+        </div>
+        <div id="sayfa" style="display: none;">
+          <a href="/hakkimizda"><h3>HAKKIMIZDA</h3></a>
+          <a href="/hizmetler"><h3>HİZMETLER</h3></a>
+        </div>
+      </div>
+
+      <a href="/gl1379p"><h3 id="ileti"><%= ileti %></h3></a>
+
+      <div id="cizgi">
+        <div id="cizgi2" onclick="odaklan(1)">
+          <h3>SLAYT</h3>
+        </div>
+        <div id="cizgi3" onclick="odaklan(2)">
+          <h3>ALT</h3>
+        </div>
+        <div id="cizgi4">
+          <h3>HİZMETLER</h3>
+        </div>
+      </div>
+
+      <div id="form">
+        <form method="POST" action="/gl1310p">
+          <input type="text" id="slayt" name="slayt" maxlength="5000" onclick="odaklan(1)" value="#1" autofocus><br>
+          <input type="text" id="alt" name="alt" maxlength="5000" onclick="odaklan(2)" value="#1"><br>
+
+          <input type="submit" id="ekle" value="EKLE" onclick="yukleme()">
+        </form>
+      </div>
+
+      <div id="hizmetler">
+        <% for (var i = veri.length-1; i >= 0; i--) { %>
+          <% if (veri[i].dosyalar.split('/')[1] != null) { %>
+            <div id="veri" onclick="sec(<%= veri[i].no %>)">
+              <div id="num">
+                <h3 id="numara"><%= veri[i].no %></h3>
+              </div>
+              <div id="res">
+                <img id="resim" src="/<%= veri[i].dosyalar.split('/')[1] %>" onerror="this.src='/resim.png'">
+              </div>
+            </div>
+          <% } else { %>
+            <div id="veri" onclick="sec(<%= veri[i].no %>)">
+              <div id="num">
+                <h3 id="numara"><%= veri[i].no %></h3>
+              </div>
+              <div id="res">
+                <img id="resim" src="/resim.png">
+              </div>
+            </div>
+          <% } %>
+        <% } %>
+      </div>
+
+      <button id="yukari" onclick="enbas()">↑</button>
+      
+    </div>
+    
+    <script type="text/javascript">
+      window.onload = function() {
+        document.getElementById("bekle").style.display = "none";
+      }
+      
+      function sayfalar() {
+        if (document.getElementById("sayfa").style.display == "none") {
+          document.getElementById("sayfa").style.display = "block";
+          document.getElementById("isaret").style.fontSize = "30px";
+          document.getElementById("isaret").innerText = "✕";
+        }
+        else {
+          document.getElementById("sayfa").style.display = "none";
+          document.getElementById("isaret").style.fontSize = "55px";
+          document.getElementById("isaret").innerText = "≡";
+        }
+      }
+
+      function yukleme() {
+        document.getElementById("bekle").style.display = "block";
+      }
+
+      var secilen = "slayt";
+
+      function odaklan(deger) {
+        if (deger == 1) {
+          document.getElementById("cizgi3").style.backgroundColor = "black";
+          document.getElementById("cizgi2").style.backgroundColor = "red";
+          secilen = "slayt";
+          document.getElementById("slayt").focus();
+        }
+        else if (deger == 2) {
+          document.getElementById("cizgi2").style.backgroundColor = "black";
+          document.getElementById("cizgi3").style.backgroundColor = "red";
+          secilen = "alt";
+          document.getElementById("alt").focus();
+        }
+      }
+
+      document.getElementById("alt").value = "#";
+      document.getElementById("slayt").value = "#";
+      document.getElementById("slayt").focus();
+
+      function sec(d) {
+        var yazilan = document.getElementById(secilen);
+        if (yazilan.value == "#") {
+          yazilan.value = "#" + d;
+          alert(d + " numara " + secilen.toUpperCase() + " bölümüne yazılacak");
+        }
+        else {
+          yazilan.value = yazilan.value + "#" + d;
+          alert(d + " numara " + secilen.toUpperCase() + " bölümüne yazılacak");
+        }
+      }
+
+      var yukari = document.getElementById("yukari");
+      window.onscroll = function() {scrollFunction()};
+      function scrollFunction() {
+        if (document.body.scrollTop > 10) {
+          yukari.style.display = "block";
+        }
+        else {
+          yukari.style.display = "none";
+        }
+      }
+      function enbas() {
+        document.body.scrollTop = 0;
+      }
+
+    </script>
+  </body>
+</html>

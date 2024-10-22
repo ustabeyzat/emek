@@ -1,0 +1,243 @@
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="usta">
+
+    <link rel="stylesheet" href="/gl1380p.css">
+    <link rel="icon" href="/logo.png">
+    <title> Site İsmi </title>
+  </head>
+  <body>
+    <div id="bekle">
+      <img id="bekleme" src="/bekleme.gif">
+      <h2 id="yukleniyor"> Yükleniyor </h2>
+    </div>
+
+    <div id="komple">
+      <div id="panel">
+        <a href="/anasayfa"><img id="logo" src="/logo2.png"></a>
+        <div id="sayfalar" onclick="sayfalar()">
+          <h4 id="isaret">≡</h4>
+        </div>
+        <div id="sayfa" style="display: none;">
+          <a href="/hakkimizda"><h3>HAKKIMIZDA</h3></a>
+          <a href="/hizmetler"><h3>HİZMETLER</h3></a>
+        </div>
+      </div>
+
+      <a href="/gl1379p"><h3 id="ileti"><%= ileti %></h3></a>
+
+      <div id="cizgi">
+        <div id="cizgi2" onclick="odaklan(2)">
+          <h3>İSİM</h3>
+        </div>
+        <div id="cizgi3" onclick="odaklan(3)">
+          <h3>DETAY</h3>
+        </div>
+        <div id="cizgi4" onclick="odaklan(4)">
+          <h3>ETİKET</h3>
+        </div>
+        <div id="cizgi5" onclick="odaklan(5)">
+          <h3>KAPAK</h3>
+        </div>
+        <div id="cizgi6" onclick="odaklan(6)">
+          <h3>DOSYALAR</h3>
+        </div>
+        <div id="cizgi7" onclick="odaklan(7)">
+          <h3>TARİH</h3>
+        </div>
+      </div>
+
+      <div id="form">
+        <form method="POST" action="/gl1380p" enctype = "multipart/form-data">
+          <textarea id="isim" name="isim" maxlength="150" onclick="odaklan(2)" autofocus></textarea><br>
+          <textarea id="detay" name="detay" maxlength="1000" onclick="odaklan(3)"></textarea><br>
+          <textarea id="etiket" name="etiket" maxlength="1000" onclick="odaklan(4)">#1</textarea><br>
+          <input type="file" id="kapak" name="kapak" onclick="odaklan(8)"><br>
+          <input type="file" id="dosyalar" name="dosyalar" multiple onclick="odaklan(9)"><br>
+          <input type="date" id="tarih" name="tarih" onclick="odaklan(7)"><br>
+
+          <input type="submit" id="olustur" value="OLUŞTUR" onclick="yukleme()">
+        </form>
+      </div>
+
+      <button id="yukari" onclick="enbas()">↑</button>
+      
+    </div>
+    
+    <script type="text/javascript">
+      window.onload = function() {
+        document.getElementById("bekle").style.display = "none";
+      }
+      
+      function sayfalar() {
+        if (document.getElementById("sayfa").style.display == "none") {
+          document.getElementById("sayfa").style.display = "block";
+          document.getElementById("isaret").style.fontSize = "30px";
+          document.getElementById("isaret").innerText = "✕";
+        }
+        else {
+          document.getElementById("sayfa").style.display = "none";
+          document.getElementById("isaret").style.fontSize = "55px";
+          document.getElementById("isaret").innerText = "≡";
+        }
+      }
+
+      var dosyalar = document.getElementById("dosyalar");
+      var ileti = document.getElementById("ileti");
+      var boyut = 0;
+      dosyalar.onchange = function() {
+        if (dosyalar.files.length > 29) {
+          ileti.innerText = "* 29 dosyadan fazla yüklenemez !";
+          this.value = "";
+        }
+        else {
+          for (i=0; i < dosyalar.files.length; i++) {
+            if (this.files[i].size > 5242880) {
+              ileti.innerText = "* " + this.files[i].name + " dosyasının boyutu 5 megabaytı (MB) geçiyor !";
+              this.value = "";
+            }
+            boyut += this.files[i].size/1048576;
+          }
+          boyut = boyut.toFixed(2);
+          if (boyut > 100) {
+            ileti.innerText = "* Dosyaların (" + boyut + " MB) toplam boyutu 100 megabaytı geçmesin !";
+            this.value = "";
+          }
+          boyut = 0;
+        }
+      };
+
+      tarihi_ayarla();
+      function tarihi_ayarla() {
+        var d = new Date()
+        var yil = d.getFullYear().toString();
+        var ayi = d.getMonth() + 1;
+        var ay = ayi.toString();
+        var gun = d.getDate().toString();
+        if (ay.length == 2 && gun.length == 2) {
+          var bugun = yil + "-" + ay + "-" + gun;
+          document.getElementById("tarih").defaultValue = bugun;
+        }
+        else {
+          if (ay.length == 2) {
+            var bugun = yil + "-" + ay + "-0" + gun;
+            document.getElementById("tarih").defaultValue = bugun;
+          }
+          else if (gun.length == 2) {
+            var bugun = yil + "-0" + ay + "-" + gun;
+            document.getElementById("tarih").defaultValue = bugun;
+          }
+          else {
+            var bugun = yil + "-0" + ay + "-0" + gun;
+            document.getElementById("tarih").defaultValue = bugun;
+          }
+        }
+      }
+
+      function yukleme() {
+        document.getElementById("bekle").style.display = "block";
+      }
+
+      function odaklan(deger) {
+        if (deger == 2) {
+          document.getElementById("cizgi3").style.backgroundColor = "black";
+          document.getElementById("cizgi4").style.backgroundColor = "black";
+          document.getElementById("cizgi5").style.backgroundColor = "black";
+          document.getElementById("cizgi6").style.backgroundColor = "black";
+          document.getElementById("cizgi7").style.backgroundColor = "black";
+
+          document.getElementById("cizgi2").style.backgroundColor = "red";
+          document.getElementById("isim").focus();
+        }
+        else if (deger == 3) {
+          document.getElementById("cizgi2").style.backgroundColor = "black";
+          document.getElementById("cizgi4").style.backgroundColor = "black";
+          document.getElementById("cizgi5").style.backgroundColor = "black";
+          document.getElementById("cizgi6").style.backgroundColor = "black";
+          document.getElementById("cizgi7").style.backgroundColor = "black";
+
+          document.getElementById("cizgi3").style.backgroundColor = "red";
+          document.getElementById("detay").focus();
+        }
+        else if (deger == 4) {
+          document.getElementById("cizgi2").style.backgroundColor = "black";
+          document.getElementById("cizgi3").style.backgroundColor = "black";
+          document.getElementById("cizgi5").style.backgroundColor = "black";
+          document.getElementById("cizgi6").style.backgroundColor = "black";
+          document.getElementById("cizgi7").style.backgroundColor = "black";
+
+          document.getElementById("cizgi4").style.backgroundColor = "red";
+          document.getElementById("etiket").focus();
+        }
+        else if (deger == 5) {
+          document.getElementById("cizgi2").style.backgroundColor = "black";
+          document.getElementById("cizgi3").style.backgroundColor = "black";
+          document.getElementById("cizgi4").style.backgroundColor = "black";
+          document.getElementById("cizgi6").style.backgroundColor = "black";
+          document.getElementById("cizgi7").style.backgroundColor = "black";
+
+          document.getElementById("cizgi5").style.backgroundColor = "red";
+          document.getElementById("kapak").click();
+        }
+        else if (deger == 6) {
+          document.getElementById("cizgi2").style.backgroundColor = "black";
+          document.getElementById("cizgi3").style.backgroundColor = "black";
+          document.getElementById("cizgi4").style.backgroundColor = "black";
+          document.getElementById("cizgi5").style.backgroundColor = "black";
+          document.getElementById("cizgi7").style.backgroundColor = "black";
+
+          document.getElementById("cizgi6").style.backgroundColor = "red";
+          document.getElementById("dosyalar").click();
+        }
+        else if (deger == 7) {
+          document.getElementById("cizgi2").style.backgroundColor = "black";
+          document.getElementById("cizgi3").style.backgroundColor = "black";
+          document.getElementById("cizgi4").style.backgroundColor = "black";
+          document.getElementById("cizgi5").style.backgroundColor = "black";
+          document.getElementById("cizgi6").style.backgroundColor = "black";
+
+          document.getElementById("cizgi7").style.backgroundColor = "red";
+          document.getElementById("tarih").focus();
+        }
+        else if (deger == 8) {
+          document.getElementById("cizgi2").style.backgroundColor = "black";
+          document.getElementById("cizgi3").style.backgroundColor = "black";
+          document.getElementById("cizgi4").style.backgroundColor = "black";
+          document.getElementById("cizgi6").style.backgroundColor = "black";
+          document.getElementById("cizgi7").style.backgroundColor = "black";
+
+          document.getElementById("cizgi5").style.backgroundColor = "red";
+        }
+        else if (deger == 9) {
+          document.getElementById("cizgi2").style.backgroundColor = "black";
+          document.getElementById("cizgi3").style.backgroundColor = "black";
+          document.getElementById("cizgi4").style.backgroundColor = "black";
+          document.getElementById("cizgi5").style.backgroundColor = "black";
+          document.getElementById("cizgi7").style.backgroundColor = "black";
+
+          document.getElementById("cizgi6").style.backgroundColor = "red";
+        }
+      }
+
+      document.getElementById("etiket").value = "#";
+      document.getElementById("isim").focus();
+
+      var yukari = document.getElementById("yukari");
+      window.onscroll = function() {scrollFunction()};
+      function scrollFunction() {
+        if (document.body.scrollTop > 10) {
+          yukari.style.display = "block";
+        }
+        else {
+          yukari.style.display = "none";
+        }
+      }
+      function enbas() {
+        document.body.scrollTop = 0;
+      }
+
+    </script>
+  </body>
+</html>

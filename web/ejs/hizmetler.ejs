@@ -1,0 +1,133 @@
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="usta">
+
+    <meta name="description" content="hizmetler">
+    <meta name="keywords" content="hizmetler">
+    <link rel="stylesheet" href="/hizmetler.css">
+    <link rel="icon" href="/logo.png">
+    <title> Site İsmi </title>
+  </head>
+  <body>
+    <div id="bekle">
+      <img id="bekleme" src="/bekleme.gif">
+      <h2 id="yukleniyor"> Yükleniyor </h2>
+    </div>
+
+    <div id="komple">
+      <div id="panel">
+        <a href="/anasayfa"><img id="logo" src="/logo2.png"></a>
+        <div id="sayfalar" onclick="sayfalar()">
+          <h4 id="isaret">≡</h4>
+        </div>
+        <div id="sayfa" style="display: none;">
+          <a href="/hakkimizda"><h3>HAKKIMIZDA</h3></a>
+          <a href="/hizmetler"><h3>HİZMETLER</h3></a>
+        </div>
+      </div>
+
+      <% if (ileti != "") { %>
+        <h3 id="ileti"><%= ileti %></h3>
+      <% } %>
+
+      <div id="form">
+        <form id="arama" method="POST" action="/hizmetler">
+          <input type="text" id="kelime" name="kelime" autofocus>
+
+          <input type="submit" id="ara" value="ARA" onclick="yukleme()">
+        </form>
+      </div>
+
+      <select id="kategoriler" onchange="kategori()">
+        <option value="">KATEGORİLER</option>
+        <option value="web tasarım">WEB TASARIM</option>
+        <option value="mobilya">MOBİLYA</option>
+      </select>
+
+      <div id="hizmetler">
+        <% for (var i = veri.length-1; i >= 0; i--) { %>
+          <% if (veri[i].dosyalar.split('/')[1] != null) { %>
+            <div id="veri"><a href="/hizmet/<%= veri[i].no %>">
+              <div id="num">
+                <% if (goz["hizmet" + veri[i].no] > 0) { %>
+                  <h3 id="numara"><%= goz["hizmet" + veri[i].no] %></h3>
+                  <img id="goz" src="/goz.png">
+                <% } %>
+              </div>
+              <div id="res">
+                <img id="resim" src="/<%= veri[i].dosyalar.split('/')[1] %>" onerror="this.src='/resim.png'">
+              </div>
+            </a></div>
+          <% } else { %>
+            <div id="veri"><a href="/hizmet/<%= veri[i].no %>">
+              <div id="num">
+                <% if (goz["hizmet" + veri[i].no] > 0) { %>
+                  <h3 id="numara"><%= goz["hizmet" + veri[i].no] %></h3>
+                  <img id="goz" src="/goz.png">
+                <% } %>
+              </div>
+              <div id="res">
+                <img id="resim" src="/resim.png">
+              </div>
+            </a></div>
+          <% } %>
+        <% } %>
+      </div>
+
+      <button id="yukari" onclick="enbas()">↑</button>
+      
+    </div>
+    
+    <script type="text/javascript">
+      window.onload = function() {
+        document.getElementById("bekle").style.display = "none";
+      }
+      
+      function sayfalar() {
+        if (document.getElementById("sayfa").style.display == "none") {
+          document.getElementById("sayfa").style.display = "block";
+          document.getElementById("isaret").style.fontSize = "30px";
+          document.getElementById("isaret").innerText = "✕";
+        }
+        else {
+          document.getElementById("sayfa").style.display = "none";
+          document.getElementById("isaret").style.fontSize = "55px";
+          document.getElementById("isaret").innerText = "≡";
+        }
+      }
+
+      function yukleme() {
+      	document.getElementById("bekle").style.display = "block";
+      }
+
+      function kategori() {
+      	document.getElementById("bekle").style.display = "block";
+        document.getElementById("kelime").value = document.getElementById("kategoriler").value;
+        if (document.getElementById("kategoriler").value != "") {
+          document.getElementById("arama").submit();
+        }
+        else {
+          document.getElementById("kelime").focus();
+      	  document.getElementById("bekle").style.display = "none";
+        }
+      }
+
+      var yukari = document.getElementById("yukari");
+      window.onscroll = function() {scrollFunction()};
+      function scrollFunction() {
+        if (document.body.scrollTop > 10) {
+          yukari.style.display = "block";
+        }
+        else {
+          yukari.style.display = "none";
+        }
+      }
+      function enbas() {
+        document.body.scrollTop = 0;
+      }
+
+    </script>
+  </body>
+</html>

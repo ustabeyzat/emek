@@ -1,0 +1,361 @@
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="usta">
+
+    <meta name="description" content="hakkında">
+    <meta name="keywords" content="hakkında">
+    <link rel="stylesheet" href="/hakkimizda.css">
+    <link rel="icon" href="/logo.png">
+    <title> Site İsmi </title>
+  </head>
+  <body>
+    <div id="bekle">
+      <img id="bekleme" src="/bekleme.gif">
+      <h2 id="yukleniyor"> Yükleniyor </h2>
+    </div>
+
+    <div id="komple">
+      <div id="panel">
+        <a href="/anasayfa"><img id="logo" src="/logo2.png"></a>
+        <div id="sayfalar" onclick="sayfalar()">
+          <h4 id="isaret">≡</h4>
+        </div>
+        <div id="sayfa" style="display: none;">
+          <a href="/hakkimizda"><h3>HAKKIMIZDA</h3></a>
+          <a href="/hizmetler"><h3>HİZMETLER</h3></a>
+        </div>
+      </div>
+
+      <div id="num">
+        <% if (goz["hakkimizda"] > 0) { %>
+          <img id="goz" src="/goz.png">
+          <h3 id="numara"><%= goz["hakkimizda"] %></h3>
+        <% } %>
+      </div>
+
+      <div id="cizgi">        
+        <div id="cizgi2">
+          <h3>MİSYONUMUZ</h3>
+          <h4>ŞEFFAF VE DÜRÜST ÇALIŞMAYA DAYALI HIZLI VE KALİTELİ HİZMET VERMEK</h4>
+        </div>
+        <div id="cizgi3">
+          <h3>VİZYONUMUZ</h3>
+          <h4>YAŞADIĞIMIZ ÇAĞIN GEREKLİLİKLERİNİ BİLİP BİR ADIM ÖTEYE TAŞIMAK</h4>
+        </div>
+        <div id="cizgi4">
+          <h3>HAKKIMIZDA</h3>
+          <h4>WEB SİTEMİZ ARACILIĞIYLA ÜRETİMİNİ YAPTIĞIMIZ ÜRÜNLERİ PAZARLIYORUZ</h4>
+          <h4 style="color: red;">* ÖZEL SİPARİŞLERİNİZ İÇİN BİZİMLE İRTİBATA GEÇİN</h4>
+        </div>
+        <div id="cizgi5">
+          <h3>HİZMET SEKTÖRLERİMİZ</h3>
+          <h4>* WEB TASARIM</h4>
+        </div>
+        <div id="cizgi6">
+          <img id="logo3" src="/telefon.png">
+          <h3> GSM</h3>
+          <a href="tel:+905555555555"><h4>0555 555 55 55</h4></a>
+        </div>
+        <div id="cizgi7">
+          <img id="logo3" src="/eposta.png">
+          <h3> E-POSTA</h3>
+          <h4>ustabeyzat@gmail.com</h4>
+        </div>
+        <div id="cizgi8">
+          <a href="https://www.instagram.com/ustabeyzat/"><img id="logo3" src="/instagram.png"><h3> INSTAGRAM</h3></a>
+          <a href="https://www.instagram.com/ustabeyzat/"><h4>https://www.instagram.com/ustabeyzat/</h4></a>
+        </div>
+        <div id="cizgi9">
+          <a href="https://www.facebook.com/ustabeyzat"><img id="logo3" src="/facebook.png"><h3> FACEBOOK</h3></a>
+          <a href="https://www.facebook.com/ustabeyzat"><h4>https://www.facebook.com/ustabeyzat</h4></a>
+        </div>
+        <div id="cizgi10">
+          <a href="https://twitter.com/ustabeyzat"><img id="logo3" src="/twitter.png"><h3> TWITTER</h3></a>
+          <a href="https://twitter.com/ustabeyzat"><h4>https://twitter.com/ustabeyzat</h4></a>
+        </div>
+        <div id="cizgi11">
+          <a href="https://youtube.com/channel/ustabeyzat"><img id="logo3" src="/youtube.png"><h3> YOUTUBE</h3></a>
+          <a href="https://youtube.com/channel/ustabeyzat"><h4>https://youtube.com/channel/ustabeyzat</h4></a>
+        </div>
+        <div id="cizgi12">
+          <img id="logo3" src="/adres.png">
+          <h3> ADRES</h3>
+          <h4>Afdvdfbdfb sgwe fds ASFs gd er  62(5) / tyh5</h4>
+          <iframe id="harita" src="https://www.google.com/maps/.." loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <button id="yukari" onclick="enbas()">↑</button>
+      
+    </div>
+    
+    <script type="text/javascript">
+      window.onload = function() {
+        document.getElementById("bekle").style.display = "none";
+      }
+      
+      function sayfalar() {
+        if (document.getElementById("sayfa").style.display == "none") {
+          document.getElementById("sayfa").style.display = "block";
+          document.getElementById("isaret").style.fontSize = "30px";
+          document.getElementById("isaret").innerText = "✕";
+        }
+        else {
+          document.getElementById("sayfa").style.display = "none";
+          document.getElementById("isaret").style.fontSize = "55px";
+          document.getElementById("isaret").innerText = "≡";
+        }
+      }
+
+      daktilo(3);
+      function daktilo(n) {
+        var element = document.getElementsByTagName('h3');
+        var yaz = element[n].innerText;
+        var bos = "yok";
+        var say = 0;
+        element[n].innerText = "";
+        element[n].style.display = "block";
+        var dongu = setInterval(function () {
+          if (yaz[say] == " ") {
+            bos = "var";
+            say += 1;
+          }
+          else {
+            if (bos == "var") {
+              element[n].innerText = element[n].innerText + " " + yaz[say];
+              bos = "yok";
+              say += 1;
+              if (say == yaz.length) {
+                clearInterval(dongu);
+                if (n == 3) {
+                  daktilo2(1);
+                }
+                else if (n == 4) {
+                  daktilo2(2);
+                }
+                else if (n == 5) {
+                  daktilo2(3);
+                }
+                else if (n == 6) {
+                  daktilo2(6);
+                }
+                else if (n == 7) {
+                  daktilo2(11);
+                }
+                else if (n == 8) {
+                  daktilo2(13);
+                }
+                else if (n == 9) {
+                  daktilo2(14);
+                }
+                else if (n == 10) {
+                  daktilo2(15);
+                }
+                else if (n == 11) {
+                  daktilo2(16);
+                }
+                else if (n == 12) {
+                  daktilo2(17);
+                }
+                else if (n == 13) {
+                  daktilo2(18);
+                }
+              }
+            }
+            else {
+              element[n].innerText += yaz[say];
+              say += 1;
+              if (say == yaz.length) {
+                clearInterval(dongu);
+                if (n == 3) {
+                  daktilo2(1);
+                }
+                else if (n == 4) {
+                  daktilo2(2);
+                }
+                else if (n == 5) {
+                  daktilo2(3);
+                }
+                else if (n == 6) {
+                  daktilo2(6);
+                }
+                else if (n == 7) {
+                  daktilo2(11);
+                }
+                else if (n == 8) {
+                  daktilo2(13);
+                }
+                else if (n == 9) {
+                  daktilo2(14);
+                }
+                else if (n == 10) {
+                  daktilo2(15);
+                }
+                else if (n == 11) {
+                  daktilo2(16);
+                }
+                else if (n == 12) {
+                  daktilo2(17);
+                }
+                else if (n == 13) {
+                  daktilo2(18);
+                }
+              }
+            }
+          }
+        }, 25);
+      }
+
+      function daktilo2(n) {
+        var element = document.getElementsByTagName('h4');
+        var yaz = element[n].innerText;
+        var bos = "yok";
+        var say = 0;
+        element[n].innerText = "";
+        element[n].style.display = "block";
+        var dongu2 = setInterval(function () {
+          if (yaz[say] == " ") {
+            bos = "var";
+            say += 1;
+          }
+          else {
+            if (bos == "var") {
+              element[n].innerText = element[n].innerText + " " + yaz[say];
+              bos = "yok";
+              say += 1;
+              if (say == yaz.length) {
+                clearInterval(dongu2);
+                if (n == 1) {
+                  daktilo(4);
+                }
+                else if (n == 2) {
+                  daktilo(5);
+                }
+                else if (n == 3) {
+                  daktilo2(4);
+                }
+                else if (n == 4) {
+                  daktilo2(5);
+                }
+                else if (n == 5) {
+                  daktilo(6);
+                }
+                else if (n == 6) {
+                  daktilo2(7);
+                }
+                else if (n == 7) {
+                  daktilo2(8);
+                }
+                else if (n == 8) {
+                  daktilo2(9);
+                }
+                else if (n == 9) {
+                  daktilo2(10);
+                }
+                else if (n == 10) {
+                  daktilo(7);
+                }
+                else if (n == 11) {
+                  daktilo2(12);
+                }
+                else if (n == 12) {
+                  daktilo(8);
+                }
+                else if (n == 13) {
+                  daktilo(9);
+                }
+                else if (n == 14) {
+                  daktilo(10);
+                }
+                else if (n == 15) {
+                  daktilo(11);
+                }
+                else if (n == 16) {
+                  daktilo(12);
+                }
+                else if (n == 17) {
+                  daktilo(13);
+                }
+              }
+            }
+            else {
+              element[n].innerText += yaz[say];
+              say += 1;
+              if (say == yaz.length) {
+                clearInterval(dongu2);
+                if (n == 1) {
+                  daktilo(4);
+                }
+                else if (n == 2) {
+                  daktilo(5);
+                }
+                else if (n == 3) {
+                  daktilo2(4);
+                }
+                else if (n == 4) {
+                  daktilo2(5);
+                }
+                else if (n == 5) {
+                  daktilo(6);
+                }
+                else if (n == 6) {
+                  daktilo2(7);
+                }
+                else if (n == 7) {
+                  daktilo2(8);
+                }
+                else if (n == 8) {
+                  daktilo2(9);
+                }
+                else if (n == 9) {
+                  daktilo2(10);
+                }
+                else if (n == 10) {
+                  daktilo(7);
+                }
+                else if (n == 11) {
+                  daktilo2(12);
+                }
+                else if (n == 12) {
+                  daktilo(8);
+                }
+                else if (n == 13) {
+                  daktilo(9);
+                }
+                else if (n == 14) {
+                  daktilo(10);
+                }
+                else if (n == 15) {
+                  daktilo(11);
+                }
+                else if (n == 16) {
+                  daktilo(12);
+                }
+                else if (n == 17) {
+                  daktilo(13);
+                }
+              }
+            }
+          }
+        }, 25);
+      }
+
+      var yukari = document.getElementById("yukari");
+      window.onscroll = function() {scrollFunction()};
+      function scrollFunction() {
+        if (document.body.scrollTop > 10) {
+          yukari.style.display = "block";
+        }
+        else {
+          yukari.style.display = "none";
+        }
+      }
+      function enbas() {
+        document.body.scrollTop = 0;
+      }
+
+    </script>
+  </body>
+</html>

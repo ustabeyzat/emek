@@ -1,0 +1,143 @@
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="usta">
+
+    <meta name="description" content="site ismi">
+    <meta name="keywords" content="site, ismi">
+    <link rel="stylesheet" href="/main.css">
+    <link rel="icon" href="/logo.png">
+    <title> Site İsmi </title>
+  </head>
+  <body>
+    <div id="bekle">
+      <img id="bekleme" src="/bekleme.gif">
+      <h2 id="yukleniyor"> Yükleniyor </h2>
+    </div>
+
+    <div id="komple">
+      <div id="panel">
+        <a href="/anasayfa"><img id="logo" src="/logo2.png"></a>
+        <div id="sayfalar" onclick="sayfalar()">
+          <h4 id="isaret">≡</h4>
+        </div>
+        <div id="sayfa" style="display: none;">
+          <a href="/hakkimizda"><h3>HAKKIMIZDA</h3></a>
+          <a href="/hizmetler"><h3>HİZMETLER</h3></a>
+        </div>
+      </div>
+
+      <% if (slayt != "") { %>
+        <div id="slide">
+          <% for (var i2 = 0; i2 < slayt.length; i2++) { %>
+              <a href="/hizmet/<%= slayt[i2].no %>"><img id="resim" src="/<%= slayt[i2].dosyalar.split('/')[1] %>" onerror="this.style.display='none';"></a>
+          <% } %>
+        </div>
+
+        <div id="kaydirma">
+          <div id="cizgi"></div>
+          <div id="nokta"></div>
+        </div>
+        <div id="kaydirma2">
+          <div id="nokta2"></div>
+          <div id="el"></div>
+        </div>
+
+        <div id="say">
+          <% if (goz["anasayfa"] > 0) { %>
+            <h2 id="ana"><%= goz["anasayfa"] %></h2>
+            <img id="goz" src="/goz.png">
+          <% } %>
+        </div>
+      <% } %>
+      <% if (ileti != "") { %>
+        <h3 id="ileti"><%= ileti %></h3>
+      <% } %>
+
+      <div id="hizmetler">
+        <% for (var i = 0; i < liste.length; i++) { %>
+          <% if (liste[i].dosyalar.split('/')[1] != null) { %>
+            <div id="liste"><a href="/hizmet/<%= liste[i].no %>">
+              <div id="num">
+                <% if (goz["hizmet" + liste[i].no] > 0) { %>
+                  <h3 id="numara"><%= goz["hizmet" + liste[i].no] %></h3>
+                  <img id="goz" src="/goz.png">
+                <% } %>
+              </div>
+              <div id="res">
+                <img id="resim2" src="/<%= liste[i].dosyalar.split('/')[1] %>" onerror="this.src='/resim.png'">
+                <img id="resim3" src="/<%= liste[i].dosyalar.split('/')[1] %>" onerror="this.style.display='none';">
+              </div>
+            </a></div>
+          <% } else { %>
+            <div id="liste"><a href="/hizmet/<%= liste[i].no %>">
+              <div id="num">
+                <% if (goz["hizmet" + liste[i].no] > 0) { %>
+                  <h3 id="numara"><%= goz["hizmet" + liste[i].no] %></h3>
+                  <img id="goz" src="/goz.png">
+                <% } %>
+              </div>
+              <div id="res">
+                <img id="resim2" src="/resim.png">
+              </div>
+            </a></div>
+          <% } %>
+        <% } %>
+      </div>
+
+      <button id="yukari" onclick="enbas()">↑</button>
+
+    </div>
+    
+    <script type="text/javascript">
+      window.onload = function() {
+        document.getElementById("bekle").style.display = "none";
+      }
+
+      function sayfalar() {
+        if (document.getElementById("sayfa").style.display == "none") {
+          document.getElementById("sayfa").style.display = "block";
+          document.getElementById("isaret").style.fontSize = "30px";
+          document.getElementById("isaret").innerText = "✕";
+        }
+        else {
+          document.getElementById("sayfa").style.display = "none";
+          document.getElementById("isaret").style.fontSize = "55px";
+          document.getElementById("isaret").innerText = "≡";
+        }
+      }
+
+      var slide = document.querySelector('#slide');
+      slide.addEventListener('wheel', event => {
+        var toLeft  = event.deltaY < 0 && slide.scrollLeft > 0;
+        var toRight = event.deltaY > 0 && slide.scrollLeft < slide.scrollWidth - slide.clientWidth;
+
+        if (toLeft || toRight) {
+          event.preventDefault();
+          if (event.deltaY > 0) {
+            slide.scrollLeft += 150;
+          }
+          else {
+            slide.scrollLeft += -150;
+          }
+        }
+      });
+
+      var yukari = document.getElementById("yukari");
+      window.onscroll = function() {scrollFunction()};
+      function scrollFunction() {
+        if (document.body.scrollTop > 10) {
+          yukari.style.display = "block";
+        }
+        else {
+          yukari.style.display = "none";
+        }
+      }
+      function enbas() {
+        document.body.scrollTop = 0;
+      }
+
+    </script>
+  </body>
+</html>

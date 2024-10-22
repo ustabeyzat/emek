@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+Disallow: /gl1379p
+Disallow: /gl1379p/
+Disallow: /yok
+Disallow: /yok/
+Disallow: /gl1310p
+Disallow: /gl1310p/
+Disallow: /gl1378p
+Disallow: /gl1378p/
+Disallow: /gl13p
+Disallow: /gl13p/
+Disallow: /gl1380p
+Disallow: /gl1380p/

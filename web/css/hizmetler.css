@@ -1,0 +1,442 @@
+
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+@font-face {
+  font-family: "font";
+  src: url("/font.ttf");
+}
+
+@keyframes sag {
+  0% {
+    left: 0px;
+    transform: rotateY(360deg);
+  }
+
+  10% {
+    left: 30px;
+    transform: rotateY(0deg);
+  }
+
+  20% {
+    left: 0px;
+  }
+}
+
+@keyframes sag1 {
+  0% {
+    left: 0px;
+    transform: rotateY(360deg);
+  }
+
+  10% {
+    left: 55px;
+    transform: rotateY(0deg);
+  }
+
+  20% {
+    left: 0px;
+  }
+}
+
+@keyframes sag2 {
+  0% {
+    left: 0px;
+    transform: rotateY(360deg);
+  }
+
+  10% {
+    left: 100px;
+    transform: rotateY(0deg);
+  }
+
+  20% {
+    left: 0px;
+  }
+}
+
+@keyframes sol {
+  0% {
+    right: 0px;
+  }
+
+  10% {
+    right: 30px;
+  }
+
+  20% {
+    right: 0px;
+  }
+}
+
+@keyframes sol1 {
+  0% {
+    right: 0px;
+  }
+
+  10% {
+    right: 55px;
+  }
+
+  20% {
+    right: 0px;
+  }
+}
+
+@keyframes sol2 {
+  0% {
+    right: 0px;
+  }
+
+  10% {
+    right: 100px;
+  }
+
+  20% {
+    right: 0px;
+  }
+}
+
+@keyframes olustur {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+#bekle {
+  position: fixed;
+  z-index: 2;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  text-align: center;
+  font-family: "font";
+}
+
+#bekleme {
+  margin-top: 150px;
+  width: 80px;
+}
+
+#yukleniyor {
+  margin-left: -2px;
+  margin-top: -27px;
+  color: green;
+}
+
+#komple {
+  font-family: "font";
+}
+
+#panel {
+  width: 100%;
+  margin-top: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+#sayfa {
+  position: absolute;
+  animation-name: olustur;
+  animation-timing-function: linear;
+  animation-duration: 1s; /* Süre */
+  animation-iteration-count: 1; /* Tekrar */
+  z-index: 1;
+  width: 120px;
+  height: 70px;
+  float: right;
+  font-family: "font";
+  text-align: center;
+  right: 20px;
+  margin-top: 10px;
+}
+
+#sayfa h3 {
+  border-radius: 15px;
+  border-bottom: 3px #07526e solid;
+  transition: all 1s;
+  margin-top: 0px;
+  text-shadow: 1px 0px 1px white, -1px 0px 1px white, 0px -1px 1px white, 0px 1px 1px white;
+  box-shadow: 0px 1px white, 0px 0px 1px 1px white inset, 0px 0px 10px white inset;
+}
+
+#sayfa h3:hover {
+  background-color: black;
+  color: white;
+  text-shadow: none;
+  box-shadow: none;
+}
+
+#ileti {
+  position: absolute;
+  font-family: "font";
+  font-size: 25px;
+  margin-left: 15px;
+  width: 95%;
+  max-height: 63px;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  color: red;
+}
+
+#ileti:hover {
+  color: grey;
+}
+
+#ileti:hover {
+  color: grey;
+}
+
+#form {
+  position: absolute;
+  border: 2px solid black;
+  margin-top: 100px;
+  margin-left: 15px;
+  width: 213px;
+  height: 35px;
+}
+
+#kelime {
+  width: 109px;
+  height: 35px;
+  font-size: 15px;
+  font-family: "font";
+  border: none;
+  outline: none;
+}
+
+#ara {
+  width: 100px;
+  height: 35px;
+  text-align: center;
+  border: none;
+  font-size: 15px;
+  font-family: "font";
+  background-color: #07526e;
+  color: white;
+  cursor: pointer;
+}
+
+#ara:hover {
+  background-color: black;
+}
+
+#hizmetler {
+  margin-top: 200px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#veri {
+  border: 1px solid gainsboro;
+  border-radius: 5px;
+  width: 310px;
+  height: 267px;
+  margin-top: 10px;
+  margin-left: 15px;
+  margin-bottom: 20px;
+}
+
+#veri:hover {
+  border: 2px solid black;
+}
+
+#num {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  height: 10%;
+  cursor: pointer;
+}
+
+#numara {
+  font-family: "font";
+  font-size: 15px;
+}
+
+#goz {
+  height: 10px;
+  margin-left: 5px;
+  margin-right: 10px;
+}
+
+#res {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 99%;
+  height: 89%;
+  cursor: pointer;
+}
+
+#resim {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#yukari {
+  display: none;
+  position: fixed;
+  right: 30px;
+  bottom: 45px;
+  width: 45px;
+  height: 35px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background-color: black;
+  color: white;
+  font-family: "font";
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* Küçük */
+@media only screen and (max-width: 484px) {
+  #logo {
+    position: relative;
+    animation-name: sag;
+    animation-timing-function: linear;
+    animation-duration: 5s; /* Süre */
+    animation-iteration-count: infinite; /* Tekrar */
+    max-width: 100px;
+    margin-left: 10px;
+  }
+
+  #sayfalar {
+    position: relative;
+    animation-name: sol;
+    animation-timing-function: linear;
+    animation-duration: 5s; /* Süre */
+    animation-iteration-count: infinite; /* Tekrar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 55px;
+    width: 60px;
+    height: 45px;
+    margin-top: 10px;
+    margin-right: 20px;
+    float: right;
+    cursor: pointer;
+  }
+
+  #kategoriler {
+    position: absolute;
+    border: 2px solid black;
+    font-family: "font";
+    font-size: 15px;
+    margin-top: 150px;
+    margin-left: 15px;
+    width: 217px;
+    height: 39px;
+    cursor: pointer;
+  }
+}
+
+/* Orta */
+@media only screen and (min-width: 485px) and (max-width: 649px){
+  #logo {
+    position: relative;
+    animation-name: sag1;
+    animation-timing-function: linear;
+    animation-duration: 5s; /* Süre */
+    animation-iteration-count: infinite; /* Tekrar */
+    max-width: 100px;
+    margin-left: 10px;
+  }
+
+  #sayfalar {
+    position: relative;
+    animation-name: sol1;
+    animation-timing-function: linear;
+    animation-duration: 5s; /* Süre */
+    animation-iteration-count: infinite; /* Tekrar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 55px;
+    width: 60px;
+    height: 45px;
+    margin-top: 10px;
+    margin-right: 20px;
+    float: right;
+    cursor: pointer;
+  }
+
+  #kategoriler {
+    position: absolute;
+    font-family: "font";
+    font-size: 15px;
+    border: 2px solid black;
+    margin-top: 100px;
+    margin-left: 235px;
+    width: 217px;
+    height: 39px;
+    cursor: pointer;
+  }
+}
+
+/* Büyük */
+@media only screen and (min-width: 650px){
+  #logo {
+    position: relative;
+    animation-name: sag2;
+    animation-timing-function: linear;
+    animation-duration: 5s; /* Süre */
+    animation-iteration-count: infinite; /* Tekrar */
+    max-width: 100px;
+    margin-left: 10px;
+  }
+
+  #sayfalar {
+    position: relative;
+    animation-name: sol2;
+    animation-timing-function: linear;
+    animation-duration: 5s; /* Süre */
+    animation-iteration-count: infinite; /* Tekrar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 55px;
+    width: 60px;
+    height: 45px;
+    margin-top: 10px;
+    margin-right: 20px;
+    float: right;
+    cursor: pointer;
+  }
+
+  #kategoriler {
+    position: absolute;
+    font-family: "font";
+    font-size: 15px;
+    border: 2px solid black;
+    margin-top: 100px;
+    margin-left: 235px;
+    width: 217px;
+    height: 39px;
+    cursor: pointer;
+  }
+}
